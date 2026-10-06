@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오유종 방구</title>
+<style>
+:root {
+  --bg: #fff3c4;
+  --ink: #3b2a14;
+  --accent: #7a4a1d;
+  --btn-text: #fff3c4;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #2a2012;
+    --ink: #ffe9a8;
+    --accent: #d9a35a;
+    --btn-text: #2a2012;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #2a2012;
+  --ink: #ffe9a8;
+  --accent: #d9a35a;
+  --btn-text: #2a2012;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Jua", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+main { max-width: 640px; width: 100%; }
+button {
+  font: inherit;
+  font-size: clamp(2.6rem, 12vw, 5rem);
+  color: var(--btn-text);
+  background: var(--accent);
+  border: 0;
+  border-radius: 28px;
+  padding: 0.35em 0.8em;
+  cursor: pointer;
+}
+button:active { transform: scale(0.96); }
+button:focus-visible { outline: 4px solid var(--ink); outline-offset: 4px; }
+#msg {
+  margin-top: 1.2em;
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  line-height: 1.5;
+  min-height: 3em;
+}
+.shake { animation: shake 0.5s; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+@media (prefers-reduced-motion: reduce) { .shake { animation: none; } }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+<body>
+<main>
+  <button id="btn" type="button">오유종 방구</button>
+  <p id="msg" aria-live="polite"></p>
+</main>
+<script>
+const btn = document.getElementById("btn");
+const msg = document.getElementById("msg");
+let first = true;
+btn.addEventListener("click", () => {
+  if (first) {
+    msg.textContent = "15년 후에도 오유종은 방구 중 💨";
+    first = false;
+  }
+  document.body.classList.remove("shake");
+  void document.body.offsetWidth;
+  document.body.classList.add("shake");
+});
+</script>
+</body>
+</html>
